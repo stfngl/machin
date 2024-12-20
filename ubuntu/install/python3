@@ -1,0 +1,15 @@
+#!/bin/bash
+if ! [[ $(python3 --version 2>/dev/null) ]]; then
+    echo "Installing python3"
+    apt-get install -y python3
+fi
+
+if ! [[ $(pip3 --version 2>/dev/null) ]]; then
+    echo "Installing python3-pip"
+    apt-get install -y python3-pip
+fi
+
+if ! [[ $(dpkg -s python3-venv 2>/dev/null) ]]; then
+    echo "Installing python3-venv"
+    apt-get install -y python3-venv
+fi

@@ -1,0 +1,17 @@
+#!/bin/bash
+if [[ ! -d "/etc/docker" ]]; then
+    mkdir /etc/docker
+fi
+
+if [[ ! -e "/etc/docker/daemon.json" ]]; then
+    echo "expose ports to your host"
+    touch  /etc/docker/daemon.json
+    echo "{ \"iptables\":false }" >> /etc/docker/daemon.json
+fi
+
+if [[ $(grep -L "systemd = true" /etc/wsl.conf) ]]; then
+    echo "Make Docker Daemon start on WSL initialization"
+    echo "So lets enable systemd" 
+    echo "[boot]" >> /etc/wsl.conf
+    echo "systemd = true" >> /etc/wsl.conf
+fi
